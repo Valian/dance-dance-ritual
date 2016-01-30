@@ -4,7 +4,7 @@ import App from './app';
 import { createStore } from 'redux'
 import { Provider } from 'react-redux'
 import rootReducer from './reducers'
-import { updateRooms, joinUser } from './actions'
+import { updateRooms, joinUser, addUserMessage } from './actions'
 import io from 'socket.io-client'
 
 let store = createStore(rootReducer)
@@ -18,7 +18,7 @@ socket.on('disconnect', () => console.log('Disconnect'));
 let rooms = [{id: 5, name: 'Dupa', usersCount: 5, maxUsers: 10}]
 store.dispatch(updateRooms(rooms))
 store.dispatch(joinUser("Debil", 1))
-console.log(store.getState())
+store.dispatch(addUserMessage(1, "costam"))
 
 ReactDOM.render(
   <Provider store={store}>

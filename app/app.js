@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
 import RoomList from './components/RoomList'
+import ChatPanel from './components/ChatPanel'
+import { addUserMessage } from './actions'
 import { connect } from 'react-redux'
 
 export class App extends Component {
   render() {
-    const { dispatch, rooms } = this.props
+    const { dispatch, rooms, chat } = this.props
     return (
       <div className="app">
         <RoomList
@@ -12,6 +14,9 @@ export class App extends Component {
             onRoomClick={ id =>
               console.log('clicked room', id)
             } />
+        <ChatPanel
+            messages={chat.messages} users={chat.users}
+            newMessage={(text) => dispatch(addUserMessage(1, text))} />
       </div>
     );
   }
@@ -22,7 +27,8 @@ export class App extends Component {
 // Note: use https://github.com/faassen/reselect for better performance.
 function select(state) {
   return {
-    rooms: state.rooms
+    rooms: state.rooms,
+    chat: state.chat
   }
 }
 

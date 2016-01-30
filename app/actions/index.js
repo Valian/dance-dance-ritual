@@ -5,7 +5,7 @@ export function joinUser(nickname, id) {
     return { type: types.USER_JOINED, nickname, id}
 }
 
-export function removeUser(nickname, id) {
+export function removeUser(id) {
     return { type: types.USER_LEFT, id}
 }
 
