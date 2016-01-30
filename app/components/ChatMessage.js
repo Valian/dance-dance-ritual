@@ -4,7 +4,7 @@ export default class ChatMessage extends Component {
     render() {
         return (
             <li className={this.props.type}>
-                {this.props.author.nickname}: {this.props.text}
+                {this.props.author}: {this.props.text}
             </li>
         )
     }

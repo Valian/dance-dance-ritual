@@ -6,23 +6,12 @@ import { assign, findIndex, find } from 'lodash'
 
 let initialState = {
     messages: [],
-    users: []
+    usersCount: 0
 }
 
-function removeUser(state, id) {
-    var index = findIndex(state.users, (u) => u.id == id)
-    if(index == -1) {
-        return state
-    }
+function changeUsersCount(state, change) {
     return assign({}, state, {
-        users: state.users.slice(index, 1)
-
-    })
-}
-
-function addUser(state, user) {
-    return assign({}, state, {
-        users: [...state.users, user]
+        usersCount: state.usersCount + change
     })
 }
 
@@ -35,25 +24,22 @@ function addMessage(state, message) {
 export default function chat(state = initialState, action = { type: undefined }) {
     switch(action.type) {
         case USER_JOINED:
-            return addUser(state, {
-                nickname: action.nickname,
-                id: action.id
-            })
+            state = chat(state, addSystemMessage('User joined lobby'))
+            return changeUsersCount(state, 1)
 
         case USER_LEFT:
-            state = chat(state, addSystemMessage('User left channel'))
-            return removeUser(state, action.id)
+            state = chat(state, addSystemMessage('User left lobby'))
+            return changeUsersCount(state, -1)
 
         case USER_MOVED_TO_ROOM:
             state = chat(state, addSystemMessage('User moved to room'))
-            return removeUser(state, action.id)
+            return changeUsersCount(state, -1)
 
         case ADD_MESSAGE:
-            var author = find(state.users, (u) => u.id == action.id)
             return addMessage(state, {
                 type: action.messageType,
                 text: action.text,
-                author: action.messageType == SYSTEM_MESSAGE ? 'SYSTEM' : author
+                author: action.messageType == SYSTEM_MESSAGE ? 'SYSTEM' : action.nickname
             })
 
         default:

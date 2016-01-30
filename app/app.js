@@ -15,7 +15,7 @@ export class App extends Component {
               console.log('clicked room', id)
             } />
         <ChatPanel
-            messages={chat.messages} users={chat.users}
+            messages={chat.messages} usersCount={chat.usersCount}
             newMessage={(text) => dispatch(addUserMessage(1, text))} />
       </div>
     );

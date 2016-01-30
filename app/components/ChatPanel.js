@@ -7,7 +7,7 @@ export default class ChatPanel extends Component {
         return (
             <div className='chat-panel'>
                 <div className="stats">
-                    Users in lobby: {this.props.users.length}
+                    Users in lobby: {this.props.usersCount}
                 </div>
                 <ul>
                     {this.props.messages.map((message, index) =>

@@ -1,27 +1,32 @@
 import * as types from '../constants/ActionTypes'
 import * as messages from '../constants/MessageTypes'
+import { socket } from '../../app';
 
-export function joinUser(nickname, id) {
-    return { type: types.USER_JOINED, nickname, id}
+export function joinUser(nickname) {
+    return { type: types.USER_JOINED, nickname}
 }
 
-export function removeUser(id) {
-    return { type: types.USER_LEFT, id}
+export function removeUser(nickname) {
+    return { type: types.USER_LEFT, nickname}
 }
 
-export function moveUserToRoom(id) {
-    return { type: types.USER_MOVED_TO_ROOM, id}
+export function moveUserToRoom(nickname) {
+    return { type: types.USER_MOVED_TO_ROOM, nickname}
 }
-
 
 export function updateRooms(rooms) {
     return { type: types.ROOMS_UPDATED, rooms}
 }
 
-export function addUserMessage(id, text) {
-    return { type: types.ADD_MESSAGE, messageType: messages.USER_MESSAGE, id, text}
+export function addUserMessage(nickname, text) {
+    return { type: types.ADD_MESSAGE, messageType: messages.USER_MESSAGE, nickname, text}
 }
 
 export function addSystemMessage(text) {
-    return { type: types.ADD_MESSAGE, messageType: messages.SYSTEM_MESSAGE, id: -1, text}
+    return { type: types.ADD_MESSAGE, messageType: messages.SYSTEM_MESSAGE, text}
+}
+
+export function newUserMessage(text) {
+    socket.emit('new message', {text});
+    return { type: undefined}
 }
