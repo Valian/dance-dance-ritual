@@ -7,7 +7,7 @@ export default class RoomList extends Component {
         return (
             <div className="room-list">
                 <div className="stats">
-                    Online users: { sumBy(this.props.rooms, (o) => o.usersCount)}
+                    Users in games: { sumBy(this.props.rooms, (o) => o.usersCount)}
                 </div>
                 <ul>
                     {this.props.rooms.map((room, index) =>

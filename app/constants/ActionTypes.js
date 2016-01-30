@@ -1,4 +1,8 @@
-export const JOIN_ROOM = "JOIN_ROOM"
-export const CREATE_ROOM = "CREATE_ROOM"
-export const REMOVE_ROOM = "REMOVE_ROOM"
-export const UPDATE_ROOM = "UPDATE_ROOM"
+export const ROOMS_UPDATED = "ROOMS_UPDATED"
+
+export const USER_JOINED = "USER_JOINED"
+export const USER_MOVED_TO_ROOM = "USER_MOVED_TO_ROOM"
+export const USER_LEFT = "USER_LEFT"
+
+export const CHAT_HISTORY = "CHAT_HISTORY"
+export const ADD_MESSAGE = "ADD_MESSAGE"
