@@ -1,12 +1,30 @@
 import React, { Component } from 'react';
+import RoomList from './components/RoomList'
+import { connect } from 'react-redux'
 
-export default class App extends Component {
+export class App extends Component {
   render() {
-    var d = new Date();
-    var time = d.getTime();
-    var style = { color: 'red'};
+    const { dispatch, rooms } = this.props
     return (
-      <h1 style={style}>Hejo, world.{time}</h1>
+      <div className="app">
+        <RoomList
+            rooms={rooms}
+            onRoomClick={ id =>
+              console.log('clicked room', id)
+            } />
+      </div>
     );
   }
 }
+
+
+// Which props do we want to inject, given the global state?
+// Note: use https://github.com/faassen/reselect for better performance.
+function select(state) {
+  return {
+    rooms: state.rooms
+  }
+}
+
+// Wrap the component to inject dispatch and state into it
+export default connect(select)(App)
