@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react'
 
-export default class Room extends Component {
+export default class RoomLabel extends Component {
     render() {
         return (
             <li>
@@ -13,7 +13,7 @@ export default class Room extends Component {
     }
 }
 
-Room.propTypes = {
+RoomLabel.propTypes = {
     'onRoomClick': PropTypes.func,
     'name': PropTypes.string.isRequired,
     'id': PropTypes.number.isRequired,
@@ -21,6 +21,6 @@ Room.propTypes = {
     'maxUsers': PropTypes.number.isRequired
 }
 
-Room.defaultProps = {
+RoomLabel.defaultProps = {
     onRoomClick: () => undefined
 }

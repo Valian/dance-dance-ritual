@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react';
-import Room from './Room'
+import RoomLabel from './RoomLabel'
 import { sumBy } from 'lodash'
 
 export default class RoomList extends Component {
@@ -11,7 +11,7 @@ export default class RoomList extends Component {
                 </div>
                 <ul>
                     {this.props.rooms.map((room, index) =>
-                        <Room
+                        <RoomLabel
                             {...room}
                             key={index}
                             onRoomClick={this.props.onRoomClick}
@@ -25,6 +25,6 @@ export default class RoomList extends Component {
 RoomList.propTypes = {
     onRoomClick: PropTypes.func.isRequired,
     rooms: PropTypes.arrayOf(
-        PropTypes.shape(Room.propTypes).isRequired
+        PropTypes.shape(RoomLabel.propTypes).isRequired
     ).isRequired
 }
