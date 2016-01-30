@@ -6,3 +6,4 @@ export const USER_LEFT = "USER_LEFT"
 
 export const CHAT_HISTORY = "CHAT_HISTORY"
 export const ADD_MESSAGE = "ADD_MESSAGE"
+export const CHANGE_USERNAME = "CHANGE_USERNAME"

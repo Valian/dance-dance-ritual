@@ -1,2 +1,3 @@
 export const SYSTEM_MESSAGE = "SYSTEM_MESSAGE"
 export const USER_MESSAGE = "USER_MESSAGE"
+export const NEW_MESSAGE = "NEW_MESSAGE"

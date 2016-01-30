@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import ChatMessage from './ChatMessage'
 import ChatInput from './ChatInput'
+import ChatNickname from './ChatNickname'
 
 export default class ChatPanel extends Component {
     render() {
@@ -21,6 +22,8 @@ export default class ChatPanel extends Component {
         )
     }
 }
+
+//<ChatNickname changeNickname={this.props.changeNickname} />
 
 ChatPanel.defaultProps = {
     newMessage: (text) => undefined

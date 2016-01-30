@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import RoomList from './components/RoomList'
 import ChatPanel from './components/ChatPanel'
-import { newUserMessage } from './actions'
+import { newUserMessage, changeUsername } from './actions'
 import { connect } from 'react-redux'
 
 export class App extends Component {
@@ -9,14 +9,19 @@ export class App extends Component {
     const { dispatch, rooms, chat } = this.props
     return (
       <div className="well">
-        <RoomList
-            rooms={rooms}
-            onRoomClick={ id =>
-              console.log('clicked room', id)
-            } />
-        <ChatPanel
-            messages={chat.messages} usersCount={chat.usersCount}
-            newMessage={(text) => dispatch(newUserMessage(text))} />
+        <div className="col-md-7">
+            <RoomList
+                rooms={rooms}
+                onRoomClick={ id =>
+                  console.log('clicked room', id)
+                } />
+        </div>
+        <div className="col-md-5">
+            <ChatPanel
+                messages={chat.messages} usersCount={chat.usersCount}
+                newMessage={(text) => dispatch(newUserMessage(text))}
+                changeNickname={(nickname) => dispatch(changeUsername(nickname))} />
+        </div>
       </div>
     );
   }
