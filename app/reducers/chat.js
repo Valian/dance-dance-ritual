@@ -24,7 +24,7 @@ function addMessage(state, message) {
 export default function chat(state = initialState, action = { type: undefined }) {
     switch(action.type) {
         case USER_JOINED:
-            state = chat(state, addSystemMessage('User joined lobby'))
+            state = chat(state, addSystemMessage('User ' + action.nickname + ' joined lobby'))
             return changeUsersCount(state, 1)
 
         case USER_LEFT:

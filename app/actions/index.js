@@ -19,6 +19,7 @@ export function updateRooms(rooms) {
 }
 
 export function addUserMessage(nickname, text) {
+    console.log(nickname)
     return { type: types.ADD_MESSAGE, messageType: messages.USER_MESSAGE, nickname, text}
 }
 
@@ -27,6 +28,6 @@ export function addSystemMessage(text) {
 }
 
 export function newUserMessage(text) {
-    socket.emit('new message', {text});
-    return { type: undefined}
+    socket.emit('chat message', text);
+    return { type: "other"}
 }
