@@ -1,26 +1,36 @@
 import React, { Component } from 'react';
 import RoomList from './components/RoomList'
 import ChatPanel from './components/ChatPanel'
-import { newUserMessage, changeUsername } from './actions'
+import GameRoom from './components/GameRoom'
+import * as actions from './actions'
 import { connect } from 'react-redux'
+import { find } from 'lodash'
+
+function getMainComponent(dispatch, rooms, currentRoom) {
+  if(currentRoom == null) {
+     return <RoomList
+        rooms={rooms}
+        onRoomClick={(id) => dispatch(actions.joinRoom(id))} />
+  } else {
+     return <GameRoom
+       {...currentRoom}
+       onRoomLeave={() => dispatch(actions.leaveRoom())} />
+  }
+}
 
 export class App extends Component {
   render() {
-    const { dispatch, rooms, chat } = this.props
+    const { dispatch, rooms, chat, currentRoom} = this.props
     return (
       <div className="well">
         <div className="col-md-7">
-            <RoomList
-                rooms={rooms}
-                onRoomClick={ id =>
-                  console.log('clicked room', id)
-                } />
+            {getMainComponent(dispatch, rooms, currentRoom)}
         </div>
         <div className="col-md-5">
             <ChatPanel
                 messages={chat.messages} usersCount={chat.usersCount}
-                newMessage={(text) => dispatch(newUserMessage(text))}
-                changeNickname={(nickname) => dispatch(changeUsername(nickname))} />
+                newMessage={(text) => dispatch(actions.newUserMessage(text))}
+                changeNickname={(nickname) => dispatch(actions.changeUsername(nickname))} />
         </div>
       </div>
     );
@@ -32,7 +42,8 @@ export class App extends Component {
 // Note: use https://github.com/faassen/reselect for better performance.
 function select(state) {
   return {
-    rooms: state.rooms,
+    rooms: state.rooms.all,
+    currentRoom: find(state.rooms.all, (r) => r.id == state.rooms.currentRoomId),
     chat: state.chat
   }
 }

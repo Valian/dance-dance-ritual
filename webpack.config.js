@@ -1,10 +1,10 @@
 var path = require('path');
+var webpack = require('webpack');
 
 module.exports = {
   devtool: 'eval',
   entry: [
-    'webpack-dev-server/client?http://localhost:8080',
-    'webpack/hot/only-dev-server',
+    'webpack-hot-middleware/client',
     './app/index.js'
   ],
   output: {
@@ -12,6 +12,14 @@ module.exports = {
     filename: "bundle.js",
     publicPath: "/static/"
   },
+  plugins: [
+    new webpack.HotModuleReplacementPlugin(),
+    new webpack.NoErrorsPlugin(),
+    new webpack.DefinePlugin({
+      __DEVELOPMENT__: true,
+      __DEVTOOLS__: true
+    })
+  ],
   module: {
     loaders: [{
       test: /\.js$/,

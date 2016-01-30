@@ -52,7 +52,6 @@ export default function chat(state = initialState, action = { type: undefined })
                     author = 'SYSTEM'
                     break
             }
-            console.log(author)
             return addMessage(state, {
                 type: action.messageType,
                 text: action.text,
