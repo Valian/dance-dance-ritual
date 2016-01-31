@@ -6,7 +6,7 @@ let outerContainer = "game-container"
 export default class Game extends Phaser.Game {
 
 	constructor() {
-		super(500, 500, Phaser.AUTO, container, null);
+		super(1024, 768, Phaser.AUTO, container, null);
 		this.state.add('GameState', GameState, false);
 	}
 
