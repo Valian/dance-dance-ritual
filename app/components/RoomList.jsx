@@ -6,10 +6,10 @@ export default class RoomList extends Component {
     render() {
         return (
             <div className="room-list">
-                <div className="stats">
+                <div className="list-group-item active">
                     Users in games: { sumBy(this.props.rooms, (o) => o.usersCount)}
                 </div>
-                <ul>
+                <ul className="list-group">
                     {this.props.rooms.map((room, index) =>
                         <RoomLabel
                             {...room}
