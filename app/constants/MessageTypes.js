@@ -1,3 +1,3 @@
-export const SYSTEM_MESSAGE = "SYSTEM_MESSAGE"
-export const USER_MESSAGE = "USER_MESSAGE"
-export const NEW_MESSAGE = "NEW_MESSAGE"
+export const SYSTEM_MESSAGE = "system-message"
+export const USER_MESSAGE = "user-message"
+export const NEW_MESSAGE = "new-message"

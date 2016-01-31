@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import RoomList from './components/RoomList'
-import ChatPanel from './components/ChatPanel'
-import GameRoom from './components/GameRoom'
+import RoomList from './components/RoomList.jsx'
+import ChatPanel from './components/ChatPanel.jsx'
+import GameRoom from './components/GameRoom.jsx'
 import * as actions from './actions'
 import { connect } from 'react-redux'
 import { find } from 'lodash'
@@ -20,17 +20,19 @@ function getMainComponent(dispatch, rooms, currentRoom) {
 
 export class App extends Component {
   render() {
-    const { dispatch, rooms, chat, currentRoom} = this.props
+    const { dispatch, rooms, chat, currentRoom} = this.props;
     return (
       <div className="well">
-        <div className="col-md-7">
-            {getMainComponent(dispatch, rooms, currentRoom)}
-        </div>
-        <div className="col-md-5">
-            <ChatPanel
-                messages={chat.messages} usersCount={chat.usersCount}
-                newMessage={(text) => dispatch(actions.newUserMessage(text))}
-                changeNickname={(nickname) => dispatch(actions.changeUsername(nickname))} />
+        <div className="row">
+          <div className="col-md-7">
+              {getMainComponent(dispatch, rooms, currentRoom)}
+          </div>
+          <div className="col-md-5">
+              <ChatPanel
+                  messages={chat.messages} usersCount={chat.usersCount}
+                  newMessage={(text) => dispatch(actions.newUserMessage(text))}
+                  changeNickname={(nickname) => dispatch(actions.changeUsername(nickname))} />
+          </div>
         </div>
       </div>
     );
