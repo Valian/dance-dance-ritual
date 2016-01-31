@@ -31,9 +31,11 @@ if (isDev) {
 
   app.use(require('webpack-hot-middleware')(compiler));
 
-  app.get('*', function(req, res) {
+  app.get('/', function(req, res) {
     res.sendFile(path.join(__dirname, 'index.html'));
   });
+
+  app.use('/static', express.static('static'));
 
   app.listen(8080, 'localhost', function(err) {
     if (err) {

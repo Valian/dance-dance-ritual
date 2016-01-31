@@ -21,6 +21,7 @@
     "async": "^1.5.2",
     "express": "^4.13.4",
     "history": "^1.17.0",
+    "jquery": "^2.2.0",
     "lodash": "^4.1.0",
     "react": "^0.14.7",
     "react-redux": "^4.1.2",
