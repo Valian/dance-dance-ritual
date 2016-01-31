@@ -32,22 +32,22 @@ export function newUserMessage(text) {
 }
 
 export function changeUsername(nickname) {
-    socket.emit('log in', nickname)
+    socket.emit('log in', nickname);
     return { type: types.CHANGE_USERNAME, nickname}
 }
 
 export function joinRoom(id) {
-    socket.emit('join room', id)
+    socket.emit('join room', id);
     return { type: types.JOIN_ROOM, id}
 }
 
 export function leaveRoom() {
-    socket.emit('leave room')
+    socket.emit('leave room');
     return { type: types.LEAVE_ROOM}
 }
 
 export function playerReady() {
-    socket.emit('player ready')
+    socket.emit('player ready');
     return { type: types.PLAYER_READY}
 }
 

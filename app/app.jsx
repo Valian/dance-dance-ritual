@@ -1,41 +1,54 @@
 import React, { Component } from 'react';
 import RoomList from './components/RoomList.jsx'
 import ChatPanel from './components/ChatPanel.jsx'
-import GameRoom from './components/GameRoom.jsx'
+import GameRoom, { GameStats } from './components/GameRoom.jsx'
 import * as actions from './actions'
 import { connect } from 'react-redux'
 import { find } from 'lodash'
 
-function getMainComponent(dispatch, rooms, currentRoom) {
-  if(currentRoom == null) {
-     return <RoomList
-        rooms={rooms}
-        onRoomClick={(id) => dispatch(actions.joinRoom(id))} />
-  } else {
-     return <GameRoom
-       {...currentRoom}
-       onRoomLeave={() => dispatch(actions.leaveRoom())} />
-  }
+function renderWaitroom(dispatch, rooms, chat) {
+
+  return (
+    <div className="well">
+      <div className="row">
+        <div className="col-md-7">
+            <RoomList
+            rooms={rooms}
+            onRoomClick={(id) => dispatch(actions.joinRoom(id))} />
+        </div>
+        <div className="col-md-5">
+            <ChatPanel
+                messages={chat.messages} usersCount={chat.usersCount}
+                newMessage={(text) => dispatch(actions.newUserMessage(text))}
+                changeNickname={(nickname) => dispatch(actions.changeUsername(nickname))} />
+        </div>
+      </div>
+    </div>
+  )
+}
+
+function renderGame(currentRoom) {
+
+  return (
+    <div className="well">
+      <div className="row">
+        <GameRoom
+          {...currentRoom}
+          onRoomLeave={() => dispatch(actions.leaveRoom())} />
+      </div>
+    </div>
+  )
+
 }
 
 export class App extends Component {
   render() {
     const { dispatch, rooms, chat, currentRoom} = this.props;
-    return (
-      <div className="well">
-        <div className="row">
-          <div className="col-md-7">
-              {getMainComponent(dispatch, rooms, currentRoom)}
-          </div>
-          <div className="col-md-5">
-              <ChatPanel
-                  messages={chat.messages} usersCount={chat.usersCount}
-                  newMessage={(text) => dispatch(actions.newUserMessage(text))}
-                  changeNickname={(nickname) => dispatch(actions.changeUsername(nickname))} />
-          </div>
-        </div>
-      </div>
-    );
+    if(currentRoom != null) {
+      return renderGame(currentRoom);
+    } else {
+      return renderWaitroom(dispatch, rooms, chat);
+    }
   }
 }
 
@@ -51,4 +64,4 @@ function select(state) {
 }
 
 // Wrap the component to inject dispatch and state into it
-export default connect(select)(App)
+export default connect(select)(App);

@@ -10,7 +10,7 @@ import io from 'socket.io-client'
 
 let store = createStore(rootReducer);
 let rootElement = document.getElementById('root');
-export const socket = io('192.168.0.9:3000');
+export const socket = io('http://salty-plains-44159.herokuapp.com/');
 
 socket.on('connect', () => store.dispatch(actions.changeUsername("Noname")));
 socket.on('join lobby', (nickname) => store.dispatch(actions.joinUser(nickname)));
@@ -19,6 +19,8 @@ socket.on('joined room', (nickname) => store.dispatch(actions.joinUser(nickname)
 socket.on('chat message', ({nickname, text}) => store.dispatch(actions.addUserMessage(nickname, text)));
 socket.on('update rooms', (data) => store.dispatch(actions.updateRooms(data)));
 socket.on('disconnect', () => console.log('Disconnect'));
+
+store.dispatch(actions.updateRooms([{"name": "pokoj", "id": 5, usersCount: 2, maxUsers: 12}]));
 
 ReactDOM.render(
   <Provider store={store}>
