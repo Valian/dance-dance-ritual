@@ -31,11 +31,11 @@ function changeUsername(state, nickname) {
 export default function chat(state = initialState, action = { type: undefined }) {
     switch(action.type) {
         case USER_JOINED:
-            state = chat(state, addSystemMessage('User ' + action.nickname + ' joined lobby'))
+            state = chat(state, addSystemMessage('User ' + action.nickname + ' joined.'))
             return changeUsersCount(state, 1)
 
         case USER_LEFT:
-            state = chat(state, addSystemMessage('User left lobby'))
+            state = chat(state, addSystemMessage('User ' + action.nickname + ' left.'))
             return changeUsersCount(state, -1)
 
         case USER_MOVED_TO_ROOM:

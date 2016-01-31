@@ -20,17 +20,19 @@ function getMainComponent(dispatch, rooms, currentRoom) {
 
 export class App extends Component {
   render() {
-    const { dispatch, rooms, chat, currentRoom} = this.props
+    const { dispatch, rooms, chat, currentRoom} = this.props;
     return (
       <div className="well">
-        <div className="col-md-7">
-            {getMainComponent(dispatch, rooms, currentRoom)}
-        </div>
-        <div className="col-md-5">
-            <ChatPanel
-                messages={chat.messages} usersCount={chat.usersCount}
-                newMessage={(text) => dispatch(actions.newUserMessage(text))}
-                changeNickname={(nickname) => dispatch(actions.changeUsername(nickname))} />
+        <div className="row">
+          <div className="col-md-7">
+              {getMainComponent(dispatch, rooms, currentRoom)}
+          </div>
+          <div className="col-md-5">
+              <ChatPanel
+                  messages={chat.messages} usersCount={chat.usersCount}
+                  newMessage={(text) => dispatch(actions.newUserMessage(text))}
+                  changeNickname={(nickname) => dispatch(actions.changeUsername(nickname))} />
+          </div>
         </div>
       </div>
     );

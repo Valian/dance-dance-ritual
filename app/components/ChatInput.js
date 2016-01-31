@@ -10,10 +10,14 @@ export default class ChatInput extends Component {
 
 	render() {
 		return (
-			<form onSubmit={(text) => this.handleSubmit(text)}>
-				<input ref='messageInput' type="text"/>
-				<button>Send</button>
-			</form>
+				<form className="form" onSubmit={(text) => this.handleSubmit(text)}>
+					<div className="input-group">
+						<input id="btn-input" ref="messageInput" type="text" className="form-control input-sm" placeholder="Type your message here..." />
+						<span className="input-group-btn">
+							<button className="btn btn-warning btn-sm" id="btn-chat">Send</button>
+						</span>
+					</div>
+				</form>
 		);
 	}
 }
