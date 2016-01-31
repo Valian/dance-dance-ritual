@@ -36,7 +36,7 @@ class GameState extends Phaser.State {
 		this.drawBanners();
 
 		Players.tmpPlayer = new PlayerBase('Dupacz', 'Czerwoni', 1, 'PeasantsBlue1Texture', this.game);
-		this.moveSprite(tmpPlayer, 400, 300);
+		this.moveSprite(Players.tmpPlayer, 400, 300);
 	}
 
 	createPixelArtSpriteFromTexture(TextureString){
