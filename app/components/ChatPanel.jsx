@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
-import ChatMessage from './ChatMessage'
-import ChatInput from './ChatInput'
+import ChatMessage from './ChatMessage.jsx'
+import ChatInput from './ChatInput.jsx'
 
 export default class ChatPanel extends Component {
     render() {

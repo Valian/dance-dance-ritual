@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react';
-import RoomLabel from './RoomLabel'
+import RoomLabel from './RoomLabel.jsx'
 import { sumBy } from 'lodash'
 
 export default class RoomList extends Component {

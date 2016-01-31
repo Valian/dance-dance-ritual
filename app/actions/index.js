@@ -1,6 +1,6 @@
 import * as types from '../constants/ActionTypes'
 import * as messages from '../constants/MessageTypes'
-import { socket } from '../../app';
+import { socket } from '../index.jsx';
 
 export function joinUser(nickname) {
     return { type: types.USER_JOINED, nickname}
@@ -44,4 +44,22 @@ export function joinRoom(id) {
 export function leaveRoom() {
     socket.emit('leave room')
     return { type: types.LEAVE_ROOM}
+}
+
+export function playerReady() {
+    socket.emit('player ready')
+    return { type: types.PLAYER_READY}
+}
+
+export function gameInit(seed, bpm, songId) {
+    return { type: types.GAME_INIT, seed, bpm, songId}
+}
+
+export function gameUpdateTeam(myId, playersList) {
+    return { type: types.GAME_TEAM_UPDATE, myId, playersList}
+}
+
+export function gameStart() {
+    //TODO
+    return { type: types.GAME_START}
 }

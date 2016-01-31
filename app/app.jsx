@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import RoomList from './components/RoomList'
-import ChatPanel from './components/ChatPanel'
-import GameRoom from './components/GameRoom'
+import RoomList from './components/RoomList.jsx'
+import ChatPanel from './components/ChatPanel.jsx'
+import GameRoom from './components/GameRoom.jsx'
 import * as actions from './actions'
 import { connect } from 'react-redux'
 import { find } from 'lodash'
